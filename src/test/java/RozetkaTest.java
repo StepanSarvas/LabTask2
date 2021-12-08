@@ -71,7 +71,7 @@ public class RozetkaTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".catalog-settings__sorting select")));
         Select sortingSelectTV = new Select(sortButtonTV);
         sortingSelectTV.selectByIndex(2);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@title, 'Samsung QE85QN900AUXUA')]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[1]/app-goods-tile-default/div/div[2]/a[contains(@title, 'Samsung QE85QN900')]")));
         WebElement QLED_TV_Price = driver.findElement(By.xpath("//li[1]/app-goods-tile-default/div/div[2]/div[4]/div[2]/p/span[contains(@class, 'price-value')]"));
         QLED_TV_PriceValue = Integer.parseInt(QLED_TV_Price.getText().replace(" ", ""));
         WebElement QLED_TV_CartButton = driver.findElement(By.xpath("//li[1]/app-goods-tile-default/div/div[2]/div[4]/div[2]/app-buy-button"));
@@ -95,6 +95,7 @@ public class RozetkaTest {
         ajaxSafetyCartButton.click();
         WebElement cartMenuButton = driver.findElement(By.xpath("//rz-cart/button"));
         cartMenuButton.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.cart-receipt__sum-price :nth-child(1)")));
         WebElement cartPrice = driver.findElement(By.cssSelector("div.cart-receipt__sum-price :nth-child(1)"));
         actualSummaryPrice = Integer.parseInt(cartPrice.getText());
         expectedSummaryPrice = coffeeMachinePriceValue + QLED_TV_PriceValue + ajaxSafetyPriceValue;
